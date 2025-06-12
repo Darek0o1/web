@@ -1,0 +1,114 @@
+<main class="main-content">
+  <div class="container">
+    <h2 class="page-title">
+      <i class="fas fa-file-signature"></i> Gestión de Trámites
+    </h2>
+
+    <div class="alert alert-info">
+      <i class="fas fa-info-circle alert-icon"></i>
+      <div>
+        Complete todos los campos requeridos y adjunte los documentos necesarios para su trámite. 
+        Una vez enviado, podrá hacer seguimiento con el código que se le proporcionará.
+      </div>
+    </div>
+
+    <div class="card">
+      <h3 class="card-title">
+        <i class="fas fa-edit"></i> Formulario de Trámite
+      </h3>
+      
+      <!-- Formulario de Trámite -->
+      <form [formGroup]="tramiteForm" (ngSubmit)="onSubmit()" novalidate>
+        <div class="form-row">
+          <div class="form-col">
+            <div class="form-group">
+              <label for="tipoTramite" class="form-label">Tipo de Trámite *</label>
+              <select id="tipoTramite" formControlName="tipoTramite" class="form-select" required>
+                <option value="" disabled>Seleccione un tipo de trámite</option>
+                <option value="certificado">Certificado de Estudios</option>
+                <option value="constancia">Constancia de Matrícula</option>
+                <option value="traslado">Traslado de Matrícula</option>
+                <option value="reclamo">Reclamo o Queja</option>
+                <option value="otro">Otro Trámite</option>
+              </select>
+              <div *ngIf="tramiteForm.get('tipoTramite')?.invalid && tramiteForm.get('tipoTramite')?.touched" class="text-danger">
+                Seleccione un tipo de trámite.
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="asunto" class="form-label">Asunto *</label>
+          <input id="asunto" type="text" formControlName="asunto" class="form-control" placeholder="Escriba un asunto breve y claro" required>
+          <div *ngIf="tramiteForm.get('asunto')?.invalid && tramiteForm.get('asunto')?.touched" class="text-danger">
+            El asunto es requerido.
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="descripcion" class="form-label">Descripción del Trámite *</label>
+          <textarea id="descripcion" formControlName="descripcion" class="form-control" placeholder="Describa detalladamente su solicitud o trámite" required></textarea>
+          <div *ngIf="tramiteForm.get('descripcion')?.invalid && tramiteForm.get('descripcion')?.touched" class="text-danger">
+            La descripción es requerida.
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Documentos de Sustento *</label>
+          <div class="file-upload">
+            <div 
+              class="file-drop-area" 
+              (dragover)="onDragOver($event)" 
+              (dragleave)="onDragLeave($event)" 
+              (drop)="onDrop($event)"
+              [class.dragover]="dragOver"
+              tabindex="0"
+              (click)="fileInput.click()"
+            >
+              <i class="fas fa-cloud-upload-alt file-drop-icon"></i>
+              <div class="file-message">Arrastre sus archivos aquí o haga clic para seleccionarlos</div>
+              <div class="file-hint">Formato permitido: PDF (Máx. 5MB por archivo)</div>
+              <input #fileInput type="file" (change)="onFileSelected($event)" multiple accept=".pdf" hidden>
+            </div>
+            
+            <div class="file-list">
+              <div *ngFor="let archivo of archivosSeleccionados; let i = index" class="file-item">
+                <div class="file-item-name">
+                  <i class="fas fa-file-pdf file-item-icon"></i> {{ archivo.name }}
+                </div>
+                <i class="fas fa-times file-item-remove" (click)="eliminarArchivo(i)"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary" [disabled]="tramiteForm.invalid || archivosSeleccionados.length === 0">
+            <i class="fas fa-paper-plane"></i> Enviar Trámite
+          </button>
+        </div>
+      </form>
+      
+        <div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 9999">
+          <div *ngIf="mensajeToast" class="toast show text-white bg-{{tipoToast}}" role="alert">
+            <div class="d-flex">
+              <div class="toast-body">
+                {{ mensajeToast }}
+              </div>
+              <button type="button" class="btn-close btn-close-white me-2 m-auto" aria-label="Close" (click)="cerrarToast()"></button>
+            </div>
+          </div>
+        </div>
+
+      <div *ngIf="ticketGenerado" class="ticket-section mt-4 p-3 border rounded bg-light">
+        <h4 class="mb-2"><i class="fas fa-ticket-alt"></i> Ticket de Envío</h4>
+        <p>Su trámite ha sido registrado con éxito.</p>
+        <p><strong>Código del documento:</strong> {{ codigoGenerado }}</p>
+        <button class="btn btn-success" (click)="descargarTicket()">
+          <i class="fas fa-download"></i> Descargar Ticket
+        </button>
+      </div>
+    </div>
+  </div>
+</main>

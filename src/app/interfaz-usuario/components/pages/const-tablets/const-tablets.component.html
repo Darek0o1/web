@@ -1,0 +1,146 @@
+<h2 class="form-title">Entrega de Tablets</h2>
+
+<form [formGroup]="constanciaForm" (ngSubmit)="generarConstancia()" class="constancia-form">
+  <div class="form-row">
+    <div class="form-group">
+      <label for="nombre">Nombre del Alumno:</label>
+      <input id="nombre" type="text" class="form-control" formControlName="nombre" placeholder="Nombre completo">
+    </div>
+    <div class="form-group">
+      <label for="grado">Grado:</label>
+      <input id="grado" type="text" class="form-control" formControlName="grado" placeholder="Ejemplo: 5">
+    </div>
+    <div class="form-group">
+      <label for="seccion">Sección:</label>
+      <input id="seccion" type="text" class="form-control" formControlName="seccion" placeholder="Ejemplo: A">
+    </div>
+    <div class="form-group">
+      <label for="fecha">Fecha de Entrega:</label>
+      <input id="fecha" type="date" class="form-control" formControlName="fecha">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="codigo">Código de la Tablet:</label>
+    <input id="codigo" type="text" class="form-control" formControlName="codigo" placeholder="Código o serial">
+  </div>
+
+  <div class="table-title">Estado de la Tablet</div>
+  <table class="table table-bordered no-adeudo-table">
+    <thead>
+      <tr>
+        <th>Observación</th>
+        <th>Estado</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>¿Cuenta con cargador?</td>
+        <td>
+          <select class="form-select" formControlName="cargador">
+            <option value="si">Sí</option>
+            <option value="no">No</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>¿Pantalla Rota?</td>
+        <td>
+          <select class="form-select" formControlName="pantalla">
+            <option value="no">No</option>
+            <option value="si">Sí</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>¿Carcasa Rota?</td>
+        <td>
+          <select class="form-select" formControlName="carcasa">
+            <option value="no">No</option>
+            <option value="si">Sí</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>¿Funciona Correctamente?</td>
+        <td>
+          <select class="form-select" formControlName="funciona">
+            <option value="si">Sí</option>
+            <option value="no">No</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>¿Batería Operativa?</td>
+        <td>
+          <select class="form-select" formControlName="bateria">
+            <option value="si">Sí</option>
+            <option value="no">No</option>
+          </select>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="form-group">
+    <label for="observaciones">Observaciones Adicionales:</label>
+    <textarea id="observaciones" class="form-control" rows="2" formControlName="observaciones" placeholder="Detalles adicionales..."></textarea>
+  </div>
+
+  <div class="center-btn">
+    <button type="submit" class="btn">
+      <i class="fas fa-save"></i> Generar Constancia
+    </button>
+  </div>
+</form>
+
+<div *ngIf="ticketGenerado" id="ticketTablet" class="ticket">
+  <h2>Ticket de Devolución</h2>
+  <p><strong>Nombre:</strong> {{ datosTicket.nombre }}</p>
+  <p><strong>Grado:</strong> {{ datosTicket.grado }}</p>
+  <p><strong>Sección:</strong> {{ datosTicket.seccion }}</p>
+  <p><strong>Fecha de Entrega:</strong> {{ datosTicket.fecha }}</p>
+  <p><strong>Código de Tablet:</strong> {{ datosTicket.codigo }}</p>
+  <p><strong>Observaciones:</strong> {{ datosTicket.observaciones }}</p>
+
+  <button (click)="generarPDF('ticketTablet', 'Ticket_Devolucion_Tablet')" class="btn-pdf">
+    Descargar Constancia
+  </button>
+</div>
+
+<h2 class="form-title mt-5">Constancia de No Adeudo de Tablets</h2>
+
+<form [formGroup]="noAdeudoForm" (ngSubmit)="sacarConstancia()" class="constancia-form">
+  <div class="form-row">
+    <div class="form-group">
+      <label for="nombreNoAdeudo">Nombre Completo:</label>
+      <input id="nombreNoAdeudo" type="text" class="form-control" formControlName="nombreCompleto" placeholder="Nombre completo">
+    </div>
+    <div class="form-group">
+      <label for="gradoNoAdeudo">Grado:</label>
+      <input id="gradoNoAdeudo" type="text" class="form-control" formControlName="grado" placeholder="Ejemplo: 5">
+    </div>
+    <div class="form-group">
+      <label for="seccionNoAdeudo">Sección:</label>
+      <input id="seccionNoAdeudo" type="text" class="form-control" formControlName="seccion" placeholder="Ejemplo: A">
+    </div>
+  </div>
+
+  <div class="center-btn">
+    <button type="submit" class="btn btn-primary">
+      <i class="fas fa-file-alt"></i> Sacar Constancia
+    </button>
+  </div>
+</form>
+
+<div *ngIf="constanciaNoAdeudoGenerada" id="constanciaNoAdeudo" class="ticket">
+  <h2>Constancia de No Adeudo</h2>
+  <p><strong>Nombre Completo:</strong> {{ datosNoAdeudo.nombreCompleto }}</p>
+  <p><strong>Grado:</strong> {{ datosNoAdeudo.grado }}</p>
+  <p><strong>Sección:</strong> {{ datosNoAdeudo.seccion }}</p>
+  <p><strong>Fecha de Generación:</strong> {{ datosNoAdeudo.fechaGeneracion | date: 'fullDate' }}</p>
+
+  <button (click)="generarPDF('constanciaNoAdeudo', 'Constancia_No_Adeudo_Tablet')" class="btn-pdf">
+    Descargar Constancia
+  </button>
+</div>

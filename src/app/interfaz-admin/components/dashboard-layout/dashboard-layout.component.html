@@ -1,0 +1,66 @@
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <div class="logo-container">
+      <div class="logo-icon">
+        <i class="fas fa-graduation-cap"></i>
+      </div>
+      <div class="logo-text">
+        <h1>Mariscal Cáceres</h1>
+        <p>Sistema de Mesa de Partes</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="user-profile">
+    <div class="avatar">
+      <i class="fas fa-user-circle"></i>
+    </div>
+    <div class="user-info">
+      <h3>Administrador</h3>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <nav class="sidebar-nav">
+    <ul>
+      <li>
+        <a routerLink="/admin/panel" routerLinkActive="active">
+          <div class="menu-icon"><i class="fas fa-tachometer-alt"></i></div>
+          <span>Panel de Resumen</span>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/admin/documentos" routerLinkActive="active">
+          <div class="menu-icon"><i class="fas fa-file-alt"></i></div>
+          <span>Documentos</span>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/admin/usuarios" routerLinkActive="active">
+          <div class="menu-icon"><i class="fas fa-users"></i></div>
+          <span>Usuarios</span>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/admin/configuracion" routerLinkActive="active">
+          <div class="menu-icon"><i class="fas fa-cog"></i></div>
+          <span>Configuración de Cuenta</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="divider"></div>
+
+  <div class="sidebar-footer">
+    <button class="logout-button" (click)="logout()">
+      <i class="fas fa-sign-out-alt"></i>
+      <span>Cerrar Sesión</span>
+    </button>
+  </div>
+</aside>
+
+<main class="main-content">
+  <router-outlet></router-outlet>
+</main>

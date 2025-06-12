@@ -1,0 +1,328 @@
+<div class="gestion-dashboard">
+  <!-- Header Principal -->
+  <header class="dashboard-header">
+    <div class="header-content">
+      <div class="header-title">
+        <i class="fas fa-clipboard-check"></i>
+        <h1>Centro de Gestión Académica</h1>
+        <span class="subtitle">Constancias y Préstamos</span>
+      </div>
+      
+      <div class="header-stats">
+        <div class="stat-card">
+          <div class="stat-number">12</div>
+          <div class="stat-label">Pendientes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">8</div>
+          <div class="stat-label">Aprobados</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">25</div>
+          <div class="stat-label">Total</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Controles y Filtros -->
+  <section class="controls-section">
+    <div class="filters-container">
+      <div class="filter-group">
+        <label>Estado:</label>
+        <div class="filter-buttons">
+          <button class="filter-btn active" data-filter="todos">
+            <i class="fas fa-list"></i>
+            Todos
+          </button>
+          <button class="filter-btn" data-filter="pendientes">
+            <i class="fas fa-clock"></i>
+            Pendientes
+          </button>
+          <button class="filter-btn" data-filter="aprobados">
+            <i class="fas fa-check-circle"></i>
+            Aprobados
+          </button>
+          <button class="filter-btn" data-filter="rechazados">
+            <i class="fas fa-times-circle"></i>
+            Rechazados
+          </button>
+          <button class="filter-btn" data-filter="devueltos">
+            <i class="fas fa-undo-alt"></i>
+            Devueltos
+          </button>
+        </div>
+      </div>
+
+      <div class="search-container">
+        <i class="fas fa-search"></i>
+        <input type="text" placeholder="Buscar por código o estudiante..." class="search-input">
+      </div>
+    </div>
+  </section>
+
+  <!-- Contenido Principal en Grid -->
+  <main class="main-content">
+    <!-- Panel de Tablets -->
+    <section class="content-panel">
+      <div class="panel-header">
+        <div class="panel-title">
+          <i class="fas fa-tablet-alt"></i>
+          <h2>Constancias de Tablets</h2>
+          <span class="item-count">6 solicitudes</span>
+        </div>
+        <button class="add-btn">
+          <i class="fas fa-plus"></i>
+          Nueva Solicitud
+        </button>
+      </div>
+
+      <div class="items-grid">
+        <!-- Solicitud Pendiente -->
+        <div class="item-card status-pendiente" data-status="pendientes">
+          <div class="card-header">
+            <div class="card-status">
+              <i class="fas fa-clock"></i>
+              <span>Pendiente</span>
+            </div>
+            <div class="card-code">TAB-2023-001</div>
+          </div>
+          
+          <div class="card-content">
+            <div class="student-info">
+              <div class="avatar">JP</div>
+              <div class="student-details">
+                <h3>Juan Pérez</h3>
+                <p>Estudiante de Ingeniería</p>
+              </div>
+            </div>
+            
+            <div class="request-details">
+              <div class="detail-item">
+                <i class="fas fa-calendar"></i>
+                <span>15 May 2023</span>
+              </div>
+              <div class="detail-item">
+                <i class="fas fa-tablet-alt"></i>
+                <span>Samsung Galaxy Tab A8</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="card-actions">
+            <button class="action-btn approve-btn">
+              <i class="fas fa-check"></i>
+              Aprobar
+            </button>
+            <button class="action-btn reject-btn">
+              <i class="fas fa-times"></i>
+              Rechazar
+            </button>
+          </div>
+        </div>
+
+        <!-- Solicitud Aprobada -->
+        <div class="item-card status-aprobado" data-status="aprobados">
+          <div class="card-header">
+            <div class="card-status">
+              <i class="fas fa-check-circle"></i>
+              <span>Aprobado</span>
+            </div>
+            <div class="card-code">TAB-2023-002</div>
+          </div>
+          
+          <div class="card-content">
+            <div class="student-info">
+              <div class="avatar">MG</div>
+              <div class="student-details">
+                <h3>María Gómez</h3>
+                <p>Estudiante de Sistemas</p>
+              </div>
+            </div>
+            
+            <div class="request-details">
+              <div class="detail-item">
+                <i class="fas fa-calendar"></i>
+                <span>10 May 2023</span>
+              </div>
+              <div class="detail-item">
+                <i class="fas fa-tablet-alt"></i>
+                <span>Lenovo Tab M10</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="card-actions">
+            <button class="action-btn return-btn">
+              <i class="fas fa-undo"></i>
+              Registrar Devolución
+            </button>
+          </div>
+        </div>
+
+        <!-- Solicitud Devuelta -->
+        <div class="item-card status-devuelto" data-status="devueltos">
+          <div class="card-header">
+            <div class="card-status">
+              <i class="fas fa-undo-alt"></i>
+              <span>Devuelto</span>
+            </div>
+            <div class="card-code">TAB-2023-003</div>
+          </div>
+          
+          <div class="card-content">
+            <div class="student-info">
+              <div class="avatar">CR</div>
+              <div class="student-details">
+                <h3>Carlos Ruiz</h3>
+                <p>Estudiante de Diseño</p>
+              </div>
+            </div>
+            
+            <div class="request-details">
+              <div class="detail-item">
+                <i class="fas fa-calendar"></i>
+                <span>05 May 2023</span>
+              </div>
+              <div class="detail-item">
+                <i class="fas fa-calendar-check"></i>
+                <span>Devuelto: 12 May 2023</span>
+              </div>
+              <div class="detail-item">
+                <i class="fas fa-tablet-alt"></i>
+                <span>Huawei MatePad</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-panel">
+      <div class="panel-header">
+        <div class="panel-title">
+          <i class="fas fa-book"></i>
+          <h2>Préstamos de Libros</h2>
+          <span class="item-count">4 préstamos</span>
+        </div>
+        <button class="add-btn">
+          <i class="fas fa-plus"></i>
+          Nuevo Préstamo
+        </button>
+      </div>
+
+      <div class="items-grid">
+        <div class="item-card status-pendiente" data-status="pendientes">
+          <div class="card-header">
+            <div class="card-status">
+              <i class="fas fa-clock"></i>
+              <span>Pendiente</span>
+            </div>
+            <div class="card-code">LIB-2023-045</div>
+          </div>
+          
+          <div class="card-content">
+            <div class="student-info">
+              <div class="avatar">AT</div>
+              <div class="student-details">
+                <h3>Ana Torres</h3>
+                <p>Estudiante de Desarrollo</p>
+              </div>
+            </div>
+            
+            <div class="request-details">
+              <div class="detail-item">
+                <i class="fas fa-calendar"></i>
+                <span>12 May 2023</span>
+              </div>
+              <div class="detail-item">
+                <i class="fas fa-book"></i>
+                <span>Introducción a Angular</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="card-actions">
+            <button class="action-btn approve-btn">
+              <i class="fas fa-check"></i>
+              Aprobar
+            </button>
+            <button class="action-btn reject-btn">
+              <i class="fas fa-times"></i>
+              Rechazar
+            </button>
+          </div>
+        </div>
+
+        <div class="item-card status-rechazado" data-status="rechazados">
+          <div class="card-header">
+            <div class="card-status">
+              <i class="fas fa-times-circle"></i>
+              <span>Rechazado</span>
+            </div>
+            <div class="card-code">LIB-2023-078</div>
+          </div>
+          
+          <div class="card-content">
+            <div class="student-info">
+              <div class="avatar">LM</div>
+              <div class="student-details">
+                <h3>Luis Méndez</h3>
+                <p>Estudiante de Software</p>
+              </div>
+            </div>
+            
+            <div class="request-details">
+              <div class="detail-item">
+                <i class="fas fa-calendar"></i>
+                <span>08 May 2023</span>
+              </div>
+              <div class="detail-item">
+                <i class="fas fa-book"></i>
+                <span>Patrones de Diseño</span>
+              </div>
+              <div class="detail-item rejection-reason">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span>Libro no disponible</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="item-card status-devuelto" data-status="devueltos">
+          <div class="card-header">
+            <div class="card-status">
+              <i class="fas fa-undo-alt"></i>
+              <span>Devuelto</span>
+            </div>
+            <div class="card-code">LIB-2023-056</div>
+          </div>
+          
+          <div class="card-content">
+            <div class="student-info">
+              <div class="avatar">PS</div>
+              <div class="student-details">
+                <h3>Pedro Sánchez</h3>
+                <p>Estudiante de Frontend</p>
+              </div>
+            </div>
+            
+            <div class="request-details">
+              <div class="detail-item">
+                <i class="fas fa-calendar"></i>
+                <span>03 May 2023</span>
+              </div>
+              <div class="detail-item">
+                <i class="fas fa-calendar-check"></i>
+                <span>Devuelto: 15 May 2023</span>
+              </div>
+              <div class="detail-item">
+                <i class="fas fa-book"></i>
+                <span>JavaScript Moderno</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>

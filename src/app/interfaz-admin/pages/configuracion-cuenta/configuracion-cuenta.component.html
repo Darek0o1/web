@@ -1,0 +1,150 @@
+<div class="account-settings-container">
+  <div *ngIf="cargando" class="loading-message">
+    <i class="fas fa-spinner fa-spin"></i> Cargando información del usuario...
+  </div>
+
+  <div *ngIf="error && !cargando" class="error-message">
+    <i class="fas fa-exclamation-triangle"></i> {{ error }}
+  </div>
+
+  <div *ngIf="usuario && !cargando && !error" class="settings-content">
+    <div class="settings-header">
+      <h1 class="section-title">
+        <i class="fas fa-cog icon"></i>
+        Configuración de Cuenta
+      </h1>
+    </div>
+
+    <div class="account-info-card">
+      <h2 class="card-title">
+        <i class="fas fa-user icon"></i>
+        Información Personal
+      </h2>
+
+      <div class="info-row">
+        <div class="info-label">
+          <i class="fas fa-user-check field-icon"></i>
+          <label>Nombre:</label>
+        </div>
+
+        <span class="info-value">{{ usuario.nombre || 'No especificado' }}</span>
+
+        <button class="edit-button" (click)="toggleEdit('nombre')">
+          <i class="fas fa-edit icon"></i>
+          Editar
+        </button>
+
+        <div class="edit-form" *ngIf="editando === 'nombre'">
+          <div class="form-group">
+            <input type="text" class="form-input" [(ngModel)]="usuario.nombre" />
+          </div>
+          <div class="form-actions">
+            <button class="cancel-button" (click)="cancelarEdicion()">
+              <i class="fas fa-times icon"></i> Cancelar
+            </button>
+            <button class="save-button" (click)="guardarCambios('nombre')" [disabled]="guardando">
+              <i class="fas fa-check icon"></i>
+              {{ guardando ? 'Guardando...' : 'Guardar' }}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-row">
+        <div class="info-label">
+          <i class="fas fa-users field-icon"></i>
+          <label>Apellido:</label>
+        </div>
+
+        <span class="info-value">{{ usuario.apellido || 'No especificado' }}</span>
+
+        <button class="edit-button" (click)="toggleEdit('apellido')">
+          <i class="fas fa-edit icon"></i>
+          Editar
+        </button>
+
+        <div class="edit-form" *ngIf="editando === 'apellido'">
+          <div class="form-group">
+            <input type="text" class="form-input" [(ngModel)]="usuario.apellido" />
+          </div>
+          <div class="form-actions">
+            <button class="cancel-button" (click)="cancelarEdicion()">
+              <i class="fas fa-times icon"></i> Cancelar
+            </button>
+            <button class="save-button" (click)="guardarCambios('apellido')" [disabled]="guardando">
+              <i class="fas fa-check icon"></i>
+              {{ guardando ? 'Guardando...' : 'Guardar' }}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-row">
+        <div class="info-label">
+          <i class="fas fa-envelope field-icon"></i>
+          <label>Correo:</label>
+        </div>
+        <span class="info-value">{{ usuario.correo || 'No especificado' }}</span>
+      </div>
+
+      <div class="info-row">
+        <div class="info-label">
+          <i class="fas fa-phone field-icon"></i>
+          <label>Teléfono:</label>
+        </div>
+
+        <span class="info-value">{{ usuario.numero || 'No especificado' }}</span>
+
+        <button class="edit-button" (click)="toggleEdit('numero')">
+          <i class="fas fa-edit icon"></i>
+          Editar
+        </button>
+
+        <div class="edit-form" *ngIf="editando === 'numero'">
+          <div class="form-group">
+            <input type="tel" class="form-input" [(ngModel)]="usuario.numero" />
+          </div>
+          <div class="form-actions">
+            <button class="cancel-button" (click)="cancelarEdicion()">
+              <i class="fas fa-times icon"></i> Cancelar
+            </button>
+            <button class="save-button" (click)="guardarCambios('numero')" [disabled]="guardando">
+              <i class="fas fa-check icon"></i>
+              {{ guardando ? 'Guardando...' : 'Guardar' }}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-row">
+        <div class="info-label">
+          <i class="fas fa-calendar-alt field-icon"></i>
+          <label>Fecha de nacimiento:</label>
+        </div>
+
+        <span class="info-value">
+          {{ formatearFecha(usuario.fechaNacimiento) }}
+        </span>
+
+        <button class="edit-button" (click)="toggleEdit('fechaNacimiento')">
+          <i class="fas fa-edit icon"></i>
+          Editar
+        </button>
+        <div class="edit-form" *ngIf="editando === 'fechaNacimiento'">
+          <div class="form-group">
+            <input type="date" class="form-input" [(ngModel)]="usuario.fechaNacimiento" />
+          </div>
+          <div class="form-actions">
+            <button class="cancel-button" (click)="cancelarEdicion()">
+              <i class="fas fa-times icon"></i> Cancelar
+            </button>
+            <button class="save-button" (click)="guardarCambios('fechaNacimiento')" [disabled]="guardando">
+              <i class="fas fa-check icon"></i>
+              {{ guardando ? 'Guardando...' : 'Guardar' }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

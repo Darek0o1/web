@@ -1,0 +1,455 @@
+
+$primary-color: #4caf50;
+$secondary-color: #2563eb;
+$accent-color: #f59e0b;
+$text-dark: #1e293b;
+$text-medium: #475569;
+$text-light: #64748b;
+$shadow-color: rgba(0, 0, 0, 0.1);
+$card-bg-color: rgba(255, 255, 255, 0.98);
+$error-color: #ef4444;
+$success-color: #10b981;
+$transition-time: 0.3s;
+$border-radius: 16px;
+$input-border-radius: 10px;
+$button-border-radius: 50px;
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+@mixin card-shadow {
+  box-shadow: 0 20px 40px -15px $shadow-color;
+}
+
+@mixin gradient-bg {
+  background-image: linear-gradient(135deg, $primary-color, $secondary-color);
+}
+
+@mixin glass-effect {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.85);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.login-container {
+  height: 100vh;
+  @include flex-center;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('./logo.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+      to bottom right,
+      rgba($primary-color, 0.1),
+      rgba($secondary-color, 0.1),
+      transparent
+    );
+    animation: gradient-shift 15s ease infinite;
+    z-index: 0;
+  }
+}
+
+.login-card {
+  position: relative;
+  padding: 3rem;
+  @include glass-effect;
+  border-radius: $border-radius;
+  @include card-shadow;
+  width: 100%;
+  max-width: 440px;
+  transform: translateY(0);
+  transition: all $transition-time ease;
+  z-index: 1;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+
+  &:hover {
+    transform: translateY(-5px) scale(1.005);
+    box-shadow: 0 25px 50px -20px rgba(0, 0, 0, 0.15);
+  }
+
+  animation: fadeIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  position: relative;
+}
+
+.login-icon {
+  color: $primary-color;
+  font-size: 3.5rem;
+  margin-bottom: 1.5rem;
+  animation: float 4s ease-in-out infinite;
+  filter: drop-shadow(0 5px 10px rgba($primary-color, 0.2));
+}
+
+.login-title {
+  color: $text-dark;
+  font-size: 2.4rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.5px;
+  background: linear-gradient(135deg, $primary-color, $secondary-color);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  line-height: 1.2;
+}
+
+.login-subtitle {
+  color: $text-medium;
+  font-size: 1.1rem;
+  margin-top: 0.5rem;
+  font-weight: 500;
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.login-label {
+  display: block;
+  color: $text-medium;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+  transition: color $transition-time ease;
+  position: relative;
+  padding-left: 0.5rem;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: $primary-color;
+    transition: width $transition-time ease;
+  }
+
+  &:focus-within {
+    color: $primary-color;
+
+    &::after {
+      width: 30px;
+    }
+  }
+}
+
+.login-input-group {
+  width: 100%;
+  margin-bottom: 0.5rem;
+  border-radius: $input-border-radius;
+  overflow: hidden;
+  transition: all $transition-time ease;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background: white;
+
+  &:focus-within {
+    border-color: $primary-color;
+    box-shadow: 0 0 0 3px rgba($primary-color, 0.1);
+  }
+
+  .p-inputgroup-addon {
+    background-color: #f8fafc;
+    border: none;
+    color: $text-medium;
+    transition: all $transition-time ease;
+    display: flex;
+    align-items: center;
+    padding: 0 1.2rem;
+    height: 100%;
+
+    .pi {
+      font-size: 1.2rem;
+    }
+  }
+
+  input {
+    width: 100%;
+    border: none;
+    padding: 0.9rem 1.2rem;
+    font-size: 1.05rem;
+    background: white;
+    color: $text-dark;
+    font-weight: 500;
+
+    &:focus {
+      outline: none;
+    }
+
+    &::placeholder {
+      color: lighten($text-light, 15%);
+      transition: opacity $transition-time ease;
+      font-weight: 400;
+    }
+
+    &:focus::placeholder {
+      opacity: 0.5;
+    }
+  }
+
+  &:focus-within .p-inputgroup-addon {
+    background-color: rgba($primary-color, 0.05);
+    color: $primary-color;
+  }
+}
+
+.login-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+
+  .remember-me {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: $text-medium;
+    cursor: pointer;
+    transition: color $transition-time ease;
+
+    &:hover {
+      color: $primary-color;
+    }
+
+    input {
+      accent-color: $primary-color;
+      width: 1.1rem;
+      height: 1.1rem;
+      cursor: pointer;
+    }
+  }
+
+  .forgot-password {
+    color: $text-medium;
+    text-decoration: none;
+    transition: color $transition-time ease;
+    font-weight: 500;
+
+    &:hover {
+      color: $secondary-color;
+      text-decoration: underline;
+    }
+  }
+}
+
+.login-button {
+  width: 100%;
+  border-radius: $button-border-radius;
+  @include gradient-bg;
+  border: none;
+  color: white;
+  padding: 1.1rem;
+  font-weight: 600;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+  transition: all $transition-time ease;
+  position: relative;
+  overflow: hidden;
+  margin-top: 1rem;
+  cursor: pointer;
+  background-size: 200% auto;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba($primary-color, 0.3);
+    background-position: right center;
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 5px 10px rgba($primary-color, 0.3);
+  }
+
+  .pi {
+    margin-right: 0.5rem;
+    transition: transform $transition-time ease;
+  }
+
+  &:hover .pi {
+    transform: translateX(3px);
+  }
+}
+
+.login-footer {
+  text-align: center;
+  margin-top: 2rem;
+  color: $text-medium;
+  font-size: 0.95rem;
+
+  a {
+    color: $secondary-color;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all $transition-time ease;
+
+    &:hover {
+      color: darken($secondary-color, 10%);
+      text-decoration: underline;
+    }
+  }
+}
+
+.wave-effect {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  transform: scale(0);
+  animation: wave 0.6s linear;
+  pointer-events: none;
+}
+
+@keyframes wave {
+  to {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.login-message {
+  padding: 0.8rem 1rem;
+  border-radius: $input-border-radius;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.4s ease;
+
+  &.error {
+    background-color: rgba($error-color, 0.1);
+    color: $error-color;
+    border-left: 3px solid $error-color;
+  }
+
+  &.success {
+    background-color: rgba($success-color, 0.1);
+    color: $success-color;
+    border-left: 3px solid $success-color;
+  }
+
+  &.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .pi {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-card {
+    padding: 2rem 1.5rem;
+    max-width: 90%;
+    margin: 0 auto;
+  }
+
+  .login-title {
+    font-size: 2rem;
+  }
+
+  .login-icon {
+    font-size: 3rem;
+  }
+
+  .login-input-group input {
+    padding: 0.8rem 1rem;
+  }
+
+  .login-actions {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .login-card {
+    background-color: rgba(30, 41, 59, 0.95);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .login-title {
+    background: linear-gradient(135deg, lighten($primary-color, 10%), lighten($secondary-color, 10%));
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+
+  .login-label {
+    color: #e2e8f0;
+  }
+
+  .login-subtitle {
+    color: #94a3b8;
+  }
+
+  .login-input-group {
+    background: rgba(15, 23, 42, 0.7);
+    border-color: rgba(255, 255, 255, 0.1);
+
+    input {
+      background: transparent;
+      color: #f8fafc;
+    }
+
+    .p-inputgroup-addon {
+      background-color: rgba(15, 23, 42, 0.9);
+      color: #94a3b8;
+    }
+  }
+
+  .login-actions {
+    .remember-me, .forgot-password {
+      color: #94a3b8;
+    }
+  }
+}

@@ -1,0 +1,38 @@
+<header class="header">
+  <div class="container">
+    <div class="header-content">
+      <img src="assets/logo.PNG" alt="Logo Colegio Mariscal Cáceres" class="logo">
+      <h1 class="title">
+        <i class="fas fa-school title-icon"></i>
+        Colegio Mariscal Cáceres
+      </h1>
+    </div>
+    <div class="user-info">
+      <span class="user-greeting"><i class="fas fa-user-circle"></i> Hola Jef</span>
+        <div class="sidebar-footer">
+          <button class="logout-btn" (click)="logout()">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Cerrar Sesión</span>
+          </button>
+        </div>
+    </div>
+  </div>
+</header>
+
+<nav class="navbar">
+  <div class="container">
+    <ul class="nav-list">
+      <a routerLink="/user/panel-user" routerLinkActive="active"><i class="fas fa-home"></i> Inicio</a>
+      <!--
+      <a routerLink="/user/const-tablets" routerLinkActive="active"><i class="fas fa-tablet-alt"></i> Constancia Tablets</a>
+      <a routerLink="/user/const-biblio" routerLinkActive="active"><i class="fas fa-book-reader"></i> Constancia Biblioteca</a>
+      -->
+      <a routerLink="/user/tramites" routerLinkActive="active"><i class="fas fa-file-signature"></i> Trámites</a>
+      <a routerLink="/user/seguimiento" routerLinkActive="active"><i class="fas fa-search-location"></i> Seguimiento</a>
+    </ul>
+  </div>
+</nav>
+
+<main class="main-content">
+  <router-outlet></router-outlet>
+</main>

@@ -1,0 +1,151 @@
+
+<main class="main-content">
+    <div class="container">
+      <h2 class="page-title">
+        <i class="fas fa-search-location"></i> Seguimiento de Trámites
+      </h2>
+
+      <div class="card">
+        <h3 class="card-title">
+          <i class="fas fa-search"></i> Buscar Trámite
+        </h3>
+        
+        <div class="search-box">
+          <input type="text" class="search-input" placeholder="Ingrese código de trámite o asunto" id="searchInput">
+          <button class="btn btn-primary" id="searchBtn">
+            <i class="fas fa-search"></i> Buscar
+          </button>
+        </div>
+        
+        <div class="tramites-tabs">
+          <button class="tab-btn active" data-tab="todos">
+            Resultado de Busqueda
+          </button>
+        </div>
+        
+        <div class="tramite-list" id="tramiteList">
+          <div class="tramite-card" data-id="TRM-583921">
+            <div class="tramite-header">
+              <span class="tramite-id">TRM-583921</span>
+              <span class="tramite-date">Hace 3 días</span>
+            </div>
+            <h4 class="tramite-title">Solicitud de Certificado de Estudios</h4>
+            <div class="tramite-details">
+              <span class="tramite-type">
+                <i class="fas fa-file-certificate"></i> Certificado
+              </span>
+              <span class="tramite-status status-proceso">
+                <i class="fas fa-spinner fa-spin"></i> En Proceso
+              </span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="pagination">
+          <button class="page-btn disabled">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button class="page-btn active">1</button>
+          <button class="page-btn">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <div class="tramite-modal" id="tramiteModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Detalle de Trámite</h3>
+        <button class="modal-close" id="modalClose">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="tramite-info">
+          <div class="info-row">
+            <div class="info-label">Código:</div>
+            <div class="info-value" id="modalId">TRM-583921</div>
+          </div>
+          <div class="info-row">
+            <div class="info-label">Asunto:</div>
+            <div class="info-value" id="modalAsunto">Solicitud de Certificado de Estudios</div>
+          </div>
+          <div class="info-row">
+            <div class="info-label">Tipo:</div>
+            <div class="info-value" id="modalTipo">Certificado</div>
+          </div>
+          <div class="info-row">
+            <div class="info-label">Fecha de Solicitud:</div>
+            <div class="info-value" id="modalFecha">28/04/2025</div>
+          </div>
+          <div class="info-row">
+            <div class="info-label">Estado:</div>
+            <div class="info-value">
+              <span class="tramite-status status-proceso" id="modalEstado">
+                <i class="fas fa-spinner fa-spin"></i> En Proceso
+              </span>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-label">Descripción:</div>
+            <div class="info-value" id="modalDescripcion">
+              Solicito certificado de estudios completo para el período académico 2022-2024 para trámites universitarios.
+            </div>
+          </div>
+        </div>
+        
+        <h4 class="files-title">Documentos Adjuntos</h4>
+        <div class="file-list">
+          <div class="file-item">
+            <i class="fas fa-file-pdf file-icon"></i>
+            <span>Solicitud_Firmada.pdf</span>
+          </div>
+          <div class="file-item">
+            <i class="fas fa-file-image file-icon"></i>
+            <span>DNI.jpg</span>
+          </div>
+          <div class="file-item">
+            <i class="fas fa-file-pdf file-icon"></i>
+            <span>Comprobante_Pago.pdf</span>
+          </div>
+        </div>
+        
+        <h4 class="files-title">Historial de Seguimiento</h4>
+        <div class="tracking-timeline">
+          <div class="timeline-line"></div>
+          <div class="timeline-item active">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">28/04/2025 - 14:30</div>
+            <div class="timeline-title">Solicitud Recibida</div>
+            <div class="timeline-description">Su solicitud ha sido recibida correctamente y está en cola para ser procesada.</div>
+          </div>
+          <div class="timeline-item active">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">29/04/2025 - 09:15</div>
+            <div class="timeline-title">Verificación de Documentos</div>
+            <div class="timeline-description">Los documentos adjuntos han sido verificados y cumplen con los requisitos.</div>
+          </div>
+          <div class="timeline-item active">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">30/04/2025 - 11:45</div>
+            <div class="timeline-title">En Proceso de Emisión</div>
+            <div class="timeline-description">Su certificado está siendo procesado por la Oficina de Registros Académicos.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">Pendiente</div>
+            <div class="timeline-title">Emisión de Certificado</div>
+            <div class="timeline-description">Emisión y firma del certificado por las autoridades correspondientes.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">Pendiente</div>
+            <div class="timeline-title">Listo para Recoger</div>
+            <div class="timeline-description">Su certificado está listo para ser recogido en la Oficina de Mesa de Partes.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

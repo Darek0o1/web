@@ -1,0 +1,72 @@
+<section class="banner">
+  <div class="banner-content">
+    <h2><i class="fas fa-clipboard-check"></i> Bienvenido al Sistema de Mesa de Partes</h2>
+    <p>Realiza trámites y haz seguimiento a tus documentos de manera rápida y eficiente.</p>
+    <button class="banner-btn" (click)="scrollToServices()">
+      <i class="fas fa-rocket"></i> Ver servicios
+    </button>
+  </div>
+</section>
+
+<section class="quick-actions" id="quick-actions">
+  <div class="container">
+    <h2 class="section-title"><i class="fas fa-th-large"></i> Servicios Disponibles</h2>
+    <div class="cards-container">
+
+      <div class="action-card">
+        <div class="card-icon">
+          <i class="fas fa-file-signature"></i>
+        </div>
+        <h3>Realizar<br>Trámite</h3>
+        <p>Inicia un nuevo trámite o procedimiento administrativo.</p>
+        <a routerLink="/user/tramites" class="btn">
+          <i class="fas fa-plus-circle"></i> Iniciar
+        </a>
+      </div>
+
+      <div class="action-card">
+        <div class="card-icon">
+          <i class="fas fa-search-location"></i>
+        </div>
+        <h3>Seguimiento<br>Documentos</h3>
+        <p>Consulta el estado actual de tus trámites y solicitudes.</p>
+        <a routerLink="/user/seguimiento" class="btn">
+          <i class="fas fa-search"></i> Ver Estado
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-col">
+        <h4><i class="fas fa-school"></i> Colegio Mariscal Cáceres</h4>
+        <p>Sistema de Mesa de Partes</p>
+      </div>
+
+      <div class="footer-col">
+        <h4><i class="fas fa-phone-alt"></i> Contacto</h4>
+        <p>Teléfono: (51) 999 999 999</p>
+        <p>Email: mesadepartes-colegiomariscal.edu.pe</p>
+      </div>
+
+      <div class="footer-col">
+        <h4><i class="fas fa-link"></i> Enlaces Útiles</h4>
+        <ul>
+          <li><a href="#">Términos y Condiciones</a></li>
+          <li><a href="#">Política de Privacidad</a></li>
+          <li><a href="#">Ayuda</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2025 Colegio Mariscal Cáceres. Todos los derechos reservados.</p>
+    </div>
+  </div>
+</footer>
+
+<router-outlet></router-outlet>

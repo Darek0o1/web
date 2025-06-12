@@ -1,0 +1,74 @@
+<div class="contenido-principal">
+  <h2 class="titulo-seccion">
+    <i class="fas fa-folder-open"></i> Documentos Recibidos
+  </h2>
+
+  <div class="documentos-grid">
+    <div class="documento-container" *ngFor="let doc of documentos">
+      <div class="documento-header">
+        <h3 class="documento-titulo">{{ doc.asunto }}</h3>
+        <p class="documento-codigo">Código: {{ doc.codigo }}</p>
+        <p class="documento-estado" [ngClass]="getEstadoClass(doc.estado)">
+          <i class="fas" [class]="getEstadoIcon(doc.estado)"></i> {{ doc.estado }}
+        </p>
+      </div>
+      <div class="documento-footer">
+        <button class="btn-ver" (click)="verDocumento(doc)">
+          <i class="fas fa-eye"></i> Ver
+        </button>
+        <button class="btn-descargar" (click)="descargarDocumento(doc)">
+          <i class="fas fa-download"></i> Descargar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" *ngIf="modalAbierto">
+    <div class="modal-contenido">
+      <div class="modal-header">
+        <h3>{{ documentoSeleccionado?.descripcion || 'Documento' }}</h3>
+        <button class="btn-cerrar" (click)="cerrarModal()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      
+      <div class="modal-body">
+        <div class="documento-info">
+          <p><strong>Código:</strong> {{ documentoSeleccionado?.codigo }}</p>
+          <p><strong>Estado actual:</strong> 
+            <span [ngClass]="getEstadoClass(documentoSeleccionado?.estado)">
+              <i class="fas" [class]="getEstadoIcon(documentoSeleccionado?.estado)"></i> 
+              {{ documentoSeleccionado?.estado }}
+            </span>
+          </p>
+          <p *ngIf="documentoSeleccionado?.tipoTramite"><strong>Tipo de trámite:</strong> {{ documentoSeleccionado?.tipoTramite }}</p>
+          <p *ngIf="documentoSeleccionado?.descripcion"><strong>Descripción:</strong> {{ documentoSeleccionado?.descripcion }}</p>
+        </div>
+
+        <div class="visor-pdf" *ngIf="documentoSeleccionado?.url">
+          <iframe *ngIf="documentoSeleccionado && documentoSeleccionado.url"
+        [src]="documentoSeleccionado.url | safeUrl"
+        width="100%" height="600px"></iframe>
+        </div>
+        
+        <div class="acciones-documento">
+          <button class="btn-rechazar" (click)="cambiarEstado('Rechazado')">
+            <i class="fas fa-times-circle"></i> Rechazar
+          </button>
+          <button class="btn-pendiente" (click)="cambiarEstado('Pendiente')">
+            <i class="fas fa-clock"></i> Pendiente
+          </button>
+          <button class="btn-aprobar" (click)="cambiarEstado('Aprobado')">
+            <i class="fas fa-check-circle"></i> Aprobar
+          </button>
+        </div>
+      </div>
+      
+      <div class="modal-footer">
+        <button class="btn-cerrar-secundario" (click)="cerrarModal()">
+          <i class="fas fa-times"></i> Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

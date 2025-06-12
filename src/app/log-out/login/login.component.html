@@ -1,0 +1,90 @@
+<!--
+<div class="container h-screen w-full flex justify-center items-center">
+    <div class="surface-card p-6 shadow-4 border-round w-full lg:w-4">
+        <div class="text-center mb-5">
+            <i class="pi pi-user text-blue-500 text-5xl mb-3"></i>
+            <div class="text-900 text-3xl font-semibold">Bienvenido</div>
+            <p class="text-600 text-sm">Ingresa tus credenciales para acceder</p>
+        </div>
+
+        <div>
+            <label for="email1" class="block text-900 font-medium mb-2">Correo</label>
+            <div class="p-inputgroup w-full mb-3">
+                <span class="p-inputgroup-addon">
+                    <i class="pi pi-envelope"></i>
+                </span>
+                <input id="email1" name="email" [(ngModel)]="loginUser.email" type="text" pInputText class="w-full" placeholder="Ingresa tu correo">
+            </div>
+
+            <label for="password1" class="block text-900 font-medium mb-2">Contraseña</label>
+            <div class="p-inputgroup w-full mb-3">
+                <span class="p-inputgroup-addon">
+                    <i class="pi pi-lock"></i>
+                </span>
+                <input id="password1" type="password" name="password" [(ngModel)]="loginUser.password" pInputText class="w-full" placeholder="Ingresa tu contraseña">
+            </div>
+
+            <button (click)="login(loginUser)" pButton pRipple label="Iniciar Sesión" icon="pi pi-sign-in" class="w-full p-button-rounded p-button-primary"></button>
+        </div>
+    </div>
+</div>
+-->
+
+
+<div class="login-container">
+  <div class="login-card">
+    <div class="login-header">
+      <i class="pi pi-dove login-icon"></i>
+      <div class="login-title">Bienvenido</div>
+      <p class="login-subtitle">Ingresa tus credenciales para acceder</p>
+    </div>
+
+    <div class="login-form">
+      <label for="email1" class="login-label">Correo</label>
+      <div class="p-inputgroup login-input-group">
+        <span class="p-inputgroup-addon">
+          <i class="pi pi-envelope"></i>
+        </span>
+        <input
+          id="email1"
+          name="email"
+          type="text"
+          pInputText
+          placeholder="Ingresa tu correo"
+          [(ngModel)]="email"
+        />
+      </div>
+
+      <label for="password1" class="login-label">Contraseña</label>
+      <div class="p-inputgroup login-input-group">
+        <span class="p-inputgroup-addon">
+          <i class="pi pi-lock"></i>
+        </span>
+        <input
+          id="password1"
+          type="password"
+          name="password"
+          pInputText
+          placeholder="Ingresa tu contraseña"
+          [(ngModel)]="password"
+        />
+      </div>
+
+      <button
+        pButton
+        pRipple
+        icon="pi pi-check-circle"
+        class="login-button"
+        (click)="login()"
+      >
+        Iniciar Sesión
+      </button>
+
+      <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
+    </div>
+  </div>
+</div>
+
+  
+  
+  

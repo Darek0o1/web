@@ -1,0 +1,83 @@
+<div class="panel-container">
+  <section class="estadisticas">
+    <h2 class="titulo-seccion">
+      <i class="fas fa-chart-bar icono-seccion"></i>
+      Notificación de archivos recibidos
+    </h2>
+    <div class="contenedor-estadisticas">
+      <div class="card total">
+        <div class="icono">
+          <i class="fas fa-file-alt"></i>
+        </div>
+        <h4>Total Documentos</h4>
+        <p>{{ totalDocumentos }}</p>
+      </div>
+      <div class="card aprobados">
+        <div class="icono">
+          <i class="fas fa-check-circle"></i>
+        </div>
+        <h4>Aprobados</h4>
+        <p>{{ aprobados }}</p>
+      </div>
+      <div class="card pendientes">
+        <div class="icono">
+          <i class="fas fa-clock"></i>
+        </div>
+        <h4>Pendientes</h4>
+        <p>{{ pendientes }}</p>
+      </div>
+      <div class="card rechazados">
+        <div class="icono">
+          <i class="fas fa-times-circle"></i>
+        </div>
+        <h4>Rechazados</h4>
+        <p>{{ rechazados }}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="documentos-recientes">
+    <div class="encabezado-documentos">
+      <h2>
+        <i class="fas fa-file-alt icono-seccion"></i>
+        Documentos Recientes
+      </h2>
+      <div class="filtros">
+        <select [(ngModel)]="estadoSeleccionado" (ngModelChange)="filtrarDocumentos()">
+          <option value="Todos los Estados">Todos los Estados</option>
+          <option value="pendiente">Pendientes</option>
+          <option value="aprobado">Aprobados</option>
+          <option value="rechazado">Rechazados</option>
+        </select>
+        <button (click)="filtrarDocumentos()">
+          <i class="fas fa-filter"></i> Filtrar
+        </button>
+      </div>
+    </div>
+
+    <div class="tabla-documentos">
+      <table>
+        <thead>
+          <tr>
+            <th>Código</th>
+            <th>Título</th>
+            <th>Usuario</th>
+            <th>Fecha</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let doc of documentosFiltrados">
+            <td>{{ doc.codigo }}</td>
+            <td>{{ doc.titulo }}</td>
+            <td>{{ doc.usuario }}</td>
+            <td>{{ doc.fecha }}</td>
+            <td>
+              <span class="estado" [ngClass]="doc.estado">{{ doc.estado | titlecase }}</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>

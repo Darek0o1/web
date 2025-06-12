@@ -1,0 +1,116 @@
+<div class="main">
+  <section>
+    <h2><i class="fas fa-users"></i> Administrar Usuarios</h2>
+
+    <div class="card">
+      <div class="card-header">
+        <h3>Lista de Usuarios</h3>
+        <div class="search">
+          <input type="text" [(ngModel)]="busqueda" placeholder="Buscar usuario..." />
+          <i class="fas fa-search"></i>
+        </div>
+      </div>
+
+      <table class="user-table">
+        <thead>
+          <tr>
+            <th>ID</th>     
+            <th>Nombre y Apellido</th>
+            <th>Correo</th>
+            <th>Contraseña</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let usuario of buscarUsuarios()">
+            <td>{{ usuario.id }}</td>
+            <td>{{ usuario.nombre }}</td>
+            <td>{{ usuario.correo }}</td>
+            <td>{{ usuario.contrasena }}</td>
+            <td>
+              <div class="actions">
+                <button class="edit" (click)="abrirModalEditar(usuario)">
+                  <i class="fas fa-edit"></i>
+                </button>
+                <button class="delete" (click)="abrirModalEliminar(usuario)">
+                  <i class="fas fa-trash-alt"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="card-header-alt">
+        <h3><i class="fas fa-user-plus"></i> Agregar Usuario</h3>
+      </div>
+      <div class="form-container">
+        <form (ngSubmit)="agregarUsuario()">
+          <div class="form-grid">
+            <div>
+              <label>Nombre y Apellido</label>
+              <input type="text" [(ngModel)]="nuevoUsuario.nombre" name="nombre" required />
+            </div>
+            <div>
+              <label>Correo</label>
+              <input type="email" [(ngModel)]="nuevoUsuario.correo" name="correo" required />
+            </div>
+            <div>
+              <label>Contraseña</label>
+              <input type="password" [(ngModel)]="nuevoUsuario.contrasena" name="contrasena" required />
+            </div>
+            <div>
+              <label>Confirmar Contraseña</label>
+              <input type="password" [(ngModel)]="nuevoUsuario.confirmar" name="confirmar" required />
+            </div>
+          </div>
+          <div class="submit">
+            <button type="submit"><i class="fas fa-plus-circle"></i> Agregar</button>
+          </div>
+          <div *ngIf="mensajeError" class="alerta-error">
+            {{ mensajeError }}
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <div class="modal" *ngIf="mostrarModalEditar">
+    <div class="modal-content">
+      <h3>Editar Usuario</h3>
+      <form (ngSubmit)="guardarCambiosUsuario()">
+        <label>Nombre:</label>
+        <input type="text" [(ngModel)]="usuarioSeleccionado.nombre" name="nombreEditado" required />
+        <label>Correo:</label>
+        <input type="email" [(ngModel)]="usuarioSeleccionado.correo" name="correoEditado" required />
+        <label>Contraseña:</label>
+        <input type="text" [(ngModel)]="usuarioSeleccionado.contrasena" name="contrasenaEditada" required />
+
+        <div class="modal-footer">
+          <button type="submit" class="btn-close">Guardar Cambios</button>
+          <button type="button" class="btn-close" style="background-color: #6c757d;" (click)="cerrarModalEditar()">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal" *ngIf="mostrarModalEliminar">
+    <div class="modal-content">
+      <h3>¿Estás seguro que deseas eliminar este usuario?</h3>
+      <p><strong>{{ usuarioSeleccionado.nombre }}</strong> será eliminado permanentemente.</p>
+      <div class="modal-footer">
+        <button class="btn-close" (click)="confirmarEliminacion()">Aceptar</button>
+        <button class="btn-close" style="background-color: #6c757d;" (click)="cerrarModalEliminar()">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" *ngIf="modalConfirmacion">
+    <div class="modal-content">
+      <h3>✅ Usuario agregado exitosamente</h3>
+      <button (click)="cerrarModalConfirmacion()">Cerrar</button>
+    </div>
+  </div>
+</div>

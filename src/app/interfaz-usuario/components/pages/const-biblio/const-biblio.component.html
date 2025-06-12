@@ -1,0 +1,162 @@
+<!-- Préstamo de Libro -->
+<div class="container biblioteca-content">
+  <h2 class="section-title">
+    <i class="fas fa-book"></i> Préstamo de Libro
+  </h2>
+
+  <form [formGroup]="prestamoForm" (ngSubmit)="registrarPrestamo()" class="biblioteca-form">
+    <div class="form-group">
+      <label for="nombreAlumno">Nombre completo del Alumno:</label>
+      <input id="nombreAlumno" type="text" class="form-control" formControlName="nombreAlumno" placeholder="Ej. Juan Pérez" required autocomplete="off" />
+    </div>
+
+    <div class="row">
+      <div class="form-group col-md-4">
+        <label for="grado">Grado:</label>
+        <select id="grado" class="form-select" formControlName="grado" required>
+          <option value="" disabled>Seleccionar</option>
+          <option *ngFor="let grado of grados" [value]="grado">{{ grado }}°</option>
+        </select>
+      </div>
+
+      <div class="form-group col-md-4">
+        <label for="seccion">Sección:</label>
+        <select id="seccion" class="form-select" formControlName="seccion" required>
+          <option value="" disabled>Seleccionar</option>
+          <option *ngFor="let seccion of secciones" [value]="seccion">{{ seccion }}</option>
+        </select>
+      </div>
+
+      <div class="form-group col-md-4">
+        <label for="fechaPrestamo">Fecha de Préstamo:</label>
+        <input id="fechaPrestamo" type="date" class="form-control" formControlName="fechaPrestamo" required />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-md-6">
+        <label for="codigoLibro">Código del Libro:</label>
+        <input id="codigoLibro" type="text" class="form-control" formControlName="codigoLibro" placeholder="Ej. LIB-001" required autocomplete="off" />
+      </div>
+
+      <div class="form-group col-md-6">
+        <label for="fechaDevolucion">Fecha de Devolución:</label>
+        <input id="fechaDevolucion" type="date" class="form-control" formControlName="fechaDevolucion" required />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="tituloLibro">Título del Libro:</label>
+      <input id="tituloLibro" type="text" class="form-control" formControlName="tituloLibro" placeholder="Ej. Cien Años de Soledad" required autocomplete="off" />
+    </div>
+
+    <div class="center-btn">
+      <button type="submit" class="btn btn-primary">
+        <i class="fas fa-save"></i> Registrar Préstamo
+      </button>
+    </div>
+  </form>
+</div>
+
+<!-- Constancia de No Adeudo -->
+<div class="container biblioteca-content mt-5">
+  <h2 class="section-title">
+    <i class="fas fa-check-circle"></i> Solicitud de Constancia de No Adeudo
+  </h2>
+
+  <form [formGroup]="constanciaForm" (ngSubmit)="solicitarConstancia()" class="biblioteca-form">
+    <div class="form-group">
+      <label for="nombreConstancia">Nombre del Alumno:</label>
+      <input id="nombreConstancia" type="text" class="form-control" formControlName="nombreAlumno" required autocomplete="off" />
+    </div>
+
+    <div class="form-group">
+      <label for="gradoConstancia">Grado:</label>
+      <select id="gradoConstancia" class="form-select" formControlName="grado" required>
+        <option value="" disabled>Seleccionar</option>
+        <option *ngFor="let grado of grados" [value]="grado">{{ grado }}°</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="seccionConstancia">Sección:</label>
+      <select id="seccionConstancia" class="form-select" formControlName="seccion" required>
+        <option value="" disabled>Seleccionar</option>
+        <option *ngFor="let seccion of secciones" [value]="seccion">{{ seccion }}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="motivoConstancia">Motivo:</label>
+      <textarea id="motivoConstancia" class="form-control" rows="3" formControlName="motivo" placeholder="Describa el motivo..."></textarea>
+    </div>
+
+    <div class="center-btn">
+      <button type="submit" class="btn btn-success">
+        <i class="fas fa-file-alt"></i> Solicitar Constancia
+      </button>
+    </div>
+  </form>
+</div>
+
+<!-- Verificación de Deudas -->
+<div class="container biblioteca-content mt-5">
+  <h2 class="section-title">
+    <i class="fas fa-search"></i> Verificación de Deudas
+  </h2>
+
+  <form (ngSubmit)="buscarDeudas()" class="biblioteca-form">
+    <div class="form-group">
+      <label for="searchAlumno">Buscar por nombre del alumno:</label>
+      <div class="d-flex">
+        <input id="searchAlumno" type="text" class="form-control me-2" [(ngModel)]="searchTerm" name="searchTerm" placeholder="Ej. Juan Pérez" required autocomplete="off" />
+        <button type="submit" class="btn btn-info">
+          <i class="fas fa-search"></i> Buscar
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <div *ngIf="resultados.length > 0" class="resultados mt-4">
+    <h3>Resultados de la búsqueda</h3>
+    <table class="table table-bordered mt-2">
+      <thead>
+        <tr>
+          <th>Alumno</th>
+          <th>Grado</th>
+          <th>Sección</th>
+          <th>Título del Libro</th>
+          <th>Código</th>
+          <th>Préstamo</th>
+          <th>Devolución</th>
+          <th>Estado</th>
+          <th>Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of resultados">
+          <td>{{ item.nombreAlumno }}</td>
+          <td>{{ item.grado }}°</td>
+          <td>{{ item.seccion }}</td>
+          <td>{{ item.tituloLibro }}</td>
+          <td>{{ item.codigoLibro }}</td>
+          <td>{{ item.fechaPrestamo }}</td>
+          <td>{{ item.fechaDevolucion }}</td>
+          <td>
+            <span [ngClass]="{
+              'text-danger': item.estado === 'Atrasado',
+              'text-success': item.estado === 'Devuelto'
+            }">
+              {{ item.estado }}
+            </span>
+          </td>
+          <td>
+            <button type="button" class="btn btn-outline-success btn-sm" (click)="devolverLibro(item)">
+              <i class="fas fa-check"></i> Devolver
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,114 @@
+<div class="main-content">
+  <div class="dashboard-title">
+    <i class="fas fa-chart-line"></i>
+    <h1>Panel de Reportes</h1>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-card blue">
+      <div class="stat-header">
+        <i class="fas fa-file-alt"></i>
+        <h3>Documentos Totales</h3>
+      </div>
+      <div class="stat-subtitle">
+        <i class="fas fa-info-circle"></i>
+        <span>Todos los documentos ingresados</span>
+      </div>
+      <div class="stat-number">120</div>
+    </div>
+
+    <div class="stat-card green">
+      <div class="stat-header">
+        <i class="fas fa-check-circle"></i>
+        <h3>Aprobados</h3>
+      </div>
+      <div class="stat-subtitle">
+        <i class="fas fa-info-circle"></i>
+        <span>Documentos aprobados</span>
+      </div>
+      <div class="stat-number">85</div>
+    </div>
+
+    <div class="stat-card yellow">
+      <div class="stat-header">
+        <i class="fas fa-clock"></i>
+        <h3>Pendientes</h3>
+      </div>
+      <div class="stat-subtitle">
+        <i class="fas fa-info-circle"></i>
+        <span>En revisión</span>
+      </div>
+      <div class="stat-number">25</div>
+    </div>
+
+    <div class="stat-card red">
+      <div class="stat-header">
+        <i class="fas fa-times-circle"></i>
+        <h3>Rechazados</h3>
+      </div>
+      <div class="stat-subtitle">
+        <i class="fas fa-info-circle"></i>
+        <span>Documentos no aceptados</span>
+      </div>
+      <div class="stat-number">10</div> 
+    </div>
+  </div>
+
+  <div class="table-section">
+    <div class="table-header">
+      <h3><i class="fas fa-table section-icon"></i>Listado de Documentos</h3>
+      <div class="search-box">
+        <i class="fas fa-search search-icon"></i>
+        <input type="text" class="search-input" placeholder="Buscar...">
+      </div>
+    </div>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Documento</th>
+            <th>Fecha</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Oficio 001</td>
+            <td>2025-04-01</td>
+            <td class="approved">Aprobado</td>
+            <td>
+              <button class="view-btn"><i class="fas fa-eye"></i> Ver</button>
+              <button class="download-btn"><i class="fas fa-download"></i> Descargar</button>
+            </td>
+          </tr>
+          <tr>
+            <td>Informe Técnico</td>
+            <td>2025-04-05</td>
+            <td class="pending">Pendiente</td>
+            <td>
+              <button class="view-btn"><i class="fas fa-eye"></i> Ver</button>
+              <button class="download-btn"><i class="fas fa-download"></i> Descargar</button>
+            </td>
+          </tr>
+          <tr>
+            <td>Solicitud 09</td>
+            <td>2025-04-10</td>
+            <td class="rejected">Rechazado</td>
+            <td>
+              <button class="view-btn"><i class="fas fa-eye"></i> Ver</button>
+              <button class="download-btn"><i class="fas fa-download"></i> Descargar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pagination">
+      <div class="page-item"><span class="page-link active">1</span></div>
+      <div class="page-item"><span class="page-link">2</span></div>
+      <div class="page-item"><span class="page-link">3</span></div>
+    </div>
+  </div>
+</div>
